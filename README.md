@@ -6,8 +6,6 @@ The main idea of creating this project is implementing an infrastructure for up 
 
 > 🌀This project is a work in progress, new features will be added over time.🌀
 
-I will try to register future goals and additions in the [Issues](https://github.com/meysamhadeli/shop-golang-microservices/issues) section of this repository.
-
 ## Technologies - Libraries
 
 - **[`labstack/echo`](https://github.com/labstack/echo)** - High performance, minimalist Go web framework
