@@ -6,29 +6,6 @@ The main idea of creating this project is implementing an infrastructure for up 
 
 > 🌀This project is a work in progress, new features will be added over time.🌀
 
-## Technologies - Libraries
-
-- **[`labstack/echo`](https://github.com/labstack/echo)** - High performance, minimalist Go web framework
-- **[`go-gorm/gorm`](https://github.com/go-gorm/gorm)** - The fantastic ORM library for Go, aims to be developer friendly
-- **[`sirupsen/logrus`](https://github.com/sirupsen/logrus)** - Logrus is a structured logger for Go
-- **[`streadway/amqp`](https://github.com/streadway/amqp)** - Go RabbitMQ Client Library
-- **[`spf13/viper`](https://github.com/spf13/viper)** - Go configuration with fangs
-- **[`swaggo/echo-swagger`](https://github.com/swaggo/echo-swagger)** - Echo middleware to automatically generate RESTful API documentation
-- **[`mehdihadeli/Go-MediatR`](https://github.com/mehdihadeli/Go-MediatR)** - This package is a Mediator Pattern implementation in Go
-- **[`go-playground/validator`](https://github.com/go-playground/validator)** - Implements value validations for structs and individual fields based on tags
-- **[`open-telemetry/opentelemetry-go`](https://github.com/open-telemetry/opentelemetry-go)** - Implementation of OpenTelemetry in Go for distributed-tracing
-- **[`meysamhadeli/problem-details`](https://github.com/meysamhadeli/problem-details)** - Error Handler for mapping our error to standardized error payload to client
-- **[`go-resty/resty`](https://github.com/go-resty/resty)** - Simple HTTP and REST client library for Go (inspired by Ruby rest-client)
-- **[`grpc/grpc-go`](https://github.com/grpc/grpc-go)** - The Go language implementation of gRPC. HTTP/2 based RPC
-- **[`go-oauth2/oauth2`](https://github.com/go-oauth2/oauth2)** - An open protocol to allow secure authorization in a simple and standard method
-- **[`stretchr/testify`](https://github.com/stretchr/testify)** - A toolkit with common assertions and mocks that plays nicely with the standard library
-- **[`uber-go/fx`](https://github.com/uber-go/fx)** - Fx is a dependency injection system for Go
-- **[`cenkalti/backoff`](https://github.com/cenkalti/backoff)** - This is a Go port of the exponential backoff algorithm
-- **[`stretchr/testify`](https://github.com/stretchr/testify)** - A toolkit with common assertions and mocks that plays nicely with the standard library
-- **[`testcontainers/testcontainers-go`](https://github.com/testcontainers/testcontainers-go)** - it's a package to create and clean up container for automated integration/smoke tests
-- **[`avast/retry-go`](https://github.com/avast/retry-go)** - Simple golang library for retry mechanism
-- **[`ahmetb/go-linq`](https://github.com/ahmetb/go-linq)** - .NET LINQ capabilities in Go
-
 ## Structure of Project
 
 In this project I used [vertical slice architecture](https://jimmybogard.com/vertical-slice-architecture/) and [feature folder structure](http://www.kamilgrzybek.com/design/feature-folders/) to structure my files.
@@ -54,6 +31,43 @@ I used CQRS to decompose my features into small parts that makes our application
 
 Using the CQRS pattern, we cut each business functionality into vertical slices, for each of these slices we group classes (see [technical folders structure](http://www.kamilgrzybek.com/design/feature-folders)) specific to that feature together (command, handlers, infrastructure, repository, controllers, etc). In our CQRS pattern each command/query handler is a separate slice. This is where you can reduce coupling between layers. Each handler can be a separated code unit, even copy/pasted. Thanks to that, we can tune down the specific method to not follow general conventions (e.g. use custom postgresql query or even different storage). In a traditional layered architecture, when we change the core generic mechanism in one layer, it can impact all methods.
 
+## How to Run
+
+> ### Docker-Compose
+
+Run our `infrastructure` with `docker` using the [infrastructure.yaml](./deployments/docker-compose/infrastructure.yaml) file with the below command at the `root` of app:
+
+```bash
+docker-compose -f ./deployments/docker-compose/infrastructure.yaml up -d
+```
+##### Todo
+I will add `docker-compsoe` for up and running whole app here in the next...
+
+
+> ### Build
+For `building` each microservice, Run this command in root of each microservice where `go.mod` located:
+```bash
+go build -v ./...
+```
+
+> ### Run
+For `runing` each microservice, Run this command in root of each microservice where `go.mod` located:
+```bash
+go run -v ./...
+```
+
+> ### Test
+
+For `testing` each microservice, Run this command in root of each microservice where `go.mod` located:
+```bash
+go test -v ./...
+```
+
+> ### Documentation Apis
+
+Each microservice uses swagger open api, navigate to `/swagger` for getting the list endpoints.
+
+Also, to test apis, I created the [shop.rest](./shop.rest) file. This file run with [REST Client](https://github.com/Huachao/vscode-restclient) `VSCode plugin`.
 
 # Support
 
@@ -74,3 +88,6 @@ Please follow this [contribution guideline](./CONTRIBUTION.md) to submit a pull 
 - [https://github.com/ThreeDotsLabs/wild-workouts-go-ddd-example](https://github.com/ThreeDotsLabs/wild-workouts-go-ddd-example)
 - [https://github.com/kgrzybek/modular-monolith-with-ddd](https://github.com/kgrzybek/modular-monolith-with-ddd)
 - [https://github.com/jbogard/ContosoUniversityDotNetCore-Pages](https://github.com/jbogard/ContosoUniversityDotNetCore-Pages)
+
+## License
+This project is made available under the MIT license. See [LICENSE](https://github.com/xbucks/go-microservices/blob/main/LICENSE) for details.
