@@ -90,4 +90,4 @@ Please follow this [contribution guideline](./CONTRIBUTION.md) to submit a pull 
 - [https://github.com/jbogard/ContosoUniversityDotNetCore-Pages](https://github.com/jbogard/ContosoUniversityDotNetCore-Pages)
 
 ## License
-This project is made available under the MIT license. See [LICENSE](https://github.com/xbucks/go-microservices/blob/main/LICENSE) for details.
+This project is made available under the MIT license. See [LICENSE](https://github.com/xbucks/go-microservices/blob/master/LICENSE) for details.
